@@ -185,9 +185,9 @@ $(".card .list-group").sortable({
     console.log("out", event.target);
   },
   update: function(event) {
+    var tempArr = [];
+    
     $(this).children().each(function() {
-      var tempArr = [];
-
       var text = $(this)
         .find("p")
         .text()
@@ -213,6 +213,21 @@ $(".card .list-group").sortable({
     saveTasks();
 
     console.log(tempArr);
+  }
+});
+
+$("#trash").droppable({
+  accept: ".card .list-group-item",
+  tolerance: "touch",
+  drop: function(event, ui) {
+    console.log("drop");
+    ui.draggable.remove();
+  },
+  over: function(event, ui) {
+    console.log("over");
+  },
+  out: function(event, ui) {
+    console.log("out");
   }
 });
 
